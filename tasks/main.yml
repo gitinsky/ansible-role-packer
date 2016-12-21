@@ -1,0 +1,12 @@
+---
+- name: create /opt/packer/bin
+  file: state=directory dest=/opt/packer/bin
+
+- name: unarchive packer
+  unarchive:
+    remote_src: yes
+    src: "https://releases.hashicorp.com/packer/0.12.1/packer_0.12.1_linux_amd64.zip"
+    dest: /opt/packer/bin
+
+- name: make a link to the packer binary
+  file: state=link src=/opt/packer/bin/packer dest=/usr/bin/packer
